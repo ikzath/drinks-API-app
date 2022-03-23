@@ -1,12 +1,12 @@
-import dataSet from '../../dataSet.json';
 import React, { useState, useEffect } from 'react';
 import ProductList from '../ProductList/ProductList';
 import { Select, Button, ButtonWrapper, ButtonContainer, ProductNoListing } from '../Products/ProductElements';
 import Paginate from "../Paginate/Paginate";
+import axios from 'axios';
 
 const Products = () => {
 
-    const [products] = useState(dataSet);
+    const [products, setProdcuts] = useState([]);
     const [filterByType, setFilterByType] = useState("All");
     const [filterByBrand, setFilterByBrand] = useState("All");
     const [results, setResults] = useState([]);
@@ -18,27 +18,32 @@ const Products = () => {
     })
 
     // get unique option value keys
-    let types = getUnique(dataSet, 'type')
+    let types = getUnique(products, 'strCategory')
         types = ['All', ...types]
         types= types.map((option, idx) => (
         <option key={idx} value={option.type}>{option}</option>
     ))
 
-    let brand = getUnique(dataSet, 'brand')
-        brand = ['All', ...brand]
-        brand= brand.map((option, idx) => (
-        <option key={idx} value={option.brand}>{option}</option>
-    ))
+    let brand = getUnique(products, 'strGlass')
+    brand = ['All', ...brand]
+    brand= brand.map((option, idx) => (
+    <option key={idx} value={option.brand}>{option}</option>
+))
 
-        function onChangeBrand(e){
-            setFilterByBrand(e.target.value)
-        }
+    function onChangeBrand(e){
+        setFilterByBrand(e.target.value)
+    }
 
-        function onChangeType(e){
-            setFilterByType(e.target.value)
-        }
+    function onChangeType(e){
+        setFilterByType(e.target.value)
+    }
 
-    
+    const dataSet = () => {
+        return axios.get('https://www.thecocktaildb.com/api/json/v1/1/search.php?f=f')
+        .then(({ data }) => setProdcuts(data.drinks))
+        .catch(err => console.error(err))
+    }
+
     useEffect(() => {
         let result = [...products]; 
 
@@ -46,31 +51,35 @@ const Products = () => {
             setResults(result)
         }           
         if(filterByType !== 'All') {
-            result = result.filter(item => item.type === filterByType);      
+            result = result.filter(item => item.strCategory === filterByType);      
         }         
         if(filterByBrand !== 'All') {
-            result = result.filter(item => item.brand === filterByBrand);      
+            result = result.filter(item => item.strGlass=== filterByBrand);      
         }  
         
         setResults(result)
-        }, [ products, filterByBrand, filterByType])
+        }, [products, filterByBrand, filterByType])
 
+        useEffect(() => {
+          dataSet()
+        }, [])
+        
         
         function onClickSort(){
             const dataArray = [ ...results]
-            setResults(dataArray.sort((a,b) => a.name.localeCompare(b.name)));
+            setResults(dataArray.sort((a,b) => a.strDrink.localeCompare(b.strDrink)));
         }
 
         function onClickSortDesc(){
             const dataArray = [ ...results]
-            setResults(dataArray.sort((a,b) => b.name.localeCompare(a.name)));
+            setResults(dataArray.sort((a,b) => b.strDrink.localeCompare(a.strDrink)));
         }
 
-        function filterByPrice(){
+        function filterByCategory(){
             const dataArray = [ ...results]
-            setResults(dataArray.sort((a,b) => a.price >b.price ? 1 : -1));
+            setResults(dataArray.filter(drink => drink.strAlcoholic === "Non alcoholic"))
         }
-          
+                  
         // Get current posts
         const indexOfLastPost = currentPage * postsPerPage;
         const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -81,29 +90,29 @@ const Products = () => {
         
     return (
         <div data-testid='product-1'>
-             <label> Filter by type : </label>
-            <Select name='products' onChange={onChangeType}>
+             <label> Filter by Category : </label>
+            <Select name='products' onChange={(e)=>onChangeType(e)}>
                 {types}
             </Select><br />
-            <label> Filter by brand : </label>
-            <Select name='products' onChange={onChangeBrand} >
+            <label> Filter by Glass : </label>
+            <Select name='products' onChange={(e)=>onChangeBrand(e)}>
                 {brand}
             </Select>
             <div>
             <ButtonContainer>
+                <ButtonWrapper>
+                    <Button data-testid='button-1' primary onClick={filterByCategory}>Non- Alcoholic Drinks </Button>  
+                </ButtonWrapper>
                 <ButtonWrapper>
                     <Button data-testid='button-1' primary onClick={onClickSort}> Sort by ascending order </Button>  
                 </ButtonWrapper>
                 <ButtonWrapper>
                     <Button data-testid='button-1' primary onClick={onClickSortDesc}> Sort by descending order </Button>  
                 </ButtonWrapper>
-                <ButtonWrapper>
-                    <Button data-testid='button-1' primary onClick={filterByPrice}>Lowest to Highest Price </Button>  
-                </ButtonWrapper>
             </ButtonContainer>
             </div>
             {results.length ?
-           <ProductList products={currentPosts}/> :  <ProductNoListing>No such perfumes available</ProductNoListing> }
+           <ProductList products={currentPosts}/> :  <ProductNoListing>No such Drinks available</ProductNoListing> }
             <Paginate
                 postsPerPage={postsPerPage}
                 totalPosts={results.length}

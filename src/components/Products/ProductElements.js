@@ -25,7 +25,7 @@ export const ProductContainer = styled(Container)`
 export const ProductTitle = styled.h2`
     font-size: 4rem;
     font-weight: bold;
-    color: orange;
+    color: #69a81b;
     `;
 
 export const ProductCardContent = styled.div`
@@ -40,7 +40,7 @@ export const ProductCardContent = styled.div`
 
 export const ProductCard = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     align-items: center;
     text-align: center;
     width: 30rem;
@@ -77,13 +77,13 @@ export const ProductCard = styled.div`
         width: 20rem;
         margin-right: 5rem;
 }
-&:hover {
+/* &:hover {
     box-shadow:  0px 10px 80px rgba(0, 0, 0, 0.21);
     transform: scale(1.05);
     background-color: #E38B06;
     color: #fff;
     
-}
+} */
 `;
 
 export const ProductIconContainer = styled.div`
@@ -112,13 +112,14 @@ export const ProductIcon3 = styled(BiDish)`
 export const ProductCardTitle = styled.h3`
     font-size: 2rem;
     font-weight: bold;
-    padding-top: 1rem;    
+    padding-top: 1rem;   
+    color: blue; 
 `;
 
 export const ProductCardText = styled.p`
-    font-size: 2rem;
+    font-size: 1.5rem;
     padding: 1rem 2rem;
-    color: red;
+    color: blue;
 `;
 
 export const Select = styled.select`
@@ -160,7 +161,7 @@ export const ButtonWrapper = styled.section`
 
 export const Button = styled.button`
     border-radius: 20px;
-    background-color: ${({ primary }) => primary ? '#E38B06' : 'lightgreen'};
+    background-color: ${({ primary }) => primary ? '#69a81b' : 'lightgreen'};
     color: ${({ primary }) => primary ? 'whitesmoke' : '#fff'};
     padding: 18px 30px;
     font-size: 20px;
@@ -179,3 +180,13 @@ export const ProductNoListing = styled.div`
     height: 90rem;
     font-size: 3rem;
 `
+export const ButtonModal = styled.button`
+  background: #69a81b;
+  color: white;
+  font-size: 1em;
+  margin: 10px;
+  padding: 5px 10px;
+  border: 2px solid #69a81b;
+  border-radius: 10px;
+  cursor: pointer;
+`;

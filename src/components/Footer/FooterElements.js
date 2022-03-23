@@ -6,7 +6,7 @@ export const FooterSection = styled.section`
     display: flex;
     align-items: center;
     color: #fff;
-    background-color: orange;
+    background-color: #69a81b;
     padding: 6rem;
 `;
 

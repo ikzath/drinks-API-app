@@ -11,7 +11,7 @@ export const Nav = styled.nav`
     top: 0;
     z-index: 999;
     height: 80px;
-    background-color: orange;
+    background-color: #69a81b;
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.15);
     display: flex;
     justify-content: center;

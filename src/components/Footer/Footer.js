@@ -56,7 +56,7 @@ function Footer() {
                             </FooterLinks>
                         </FooterLinksWrapper>
                     </FooterLinkContainer>
-                    <FooterCopyRight to='/'> Copyright 2021, Designed and coded with 💛 by Ikzath Kalanthar</FooterCopyRight>
+                    <FooterCopyRight to='/'> Copyright 2022, Designed and coded with 💛 by Ikzath Kalanthar</FooterCopyRight>
                 </FooterContainer>
             </FooterSection>
 

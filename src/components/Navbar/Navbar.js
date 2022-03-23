@@ -42,17 +42,17 @@ const Navbar = () => {
                     <NavbarContainer>
                         <NavLogo to="/">
                             <NavIcon/>
-                            Flaconi Perfumes
+                            Drinks 4 Life
                         </NavLogo>
                         <NavbarIcon onClick={handleClick}>
                             {click ? <BiX/> : <BiMenu/>}
                         </NavbarIcon>
                         <NavbarList onClick={handleClick} click={click}>
                             <NavbarItem>
-                                <NavbarLink onClick={closeMenu} to="/">Mens</NavbarLink>
+                                <NavbarLink onClick={closeMenu} to="/">Hot Getränke</NavbarLink>
                             </NavbarItem>
                             <NavbarItem>
-                                <NavbarLink onClick={closeMenu} to="/about">Womens</NavbarLink>
+                                <NavbarLink onClick={closeMenu} to="/about">Kalte Getränke</NavbarLink>
                             </NavbarItem>
                             <NavbarItem>
                                 <NavbarLink onClick={closeMenu} to="/offers">Special Offers</NavbarLink>

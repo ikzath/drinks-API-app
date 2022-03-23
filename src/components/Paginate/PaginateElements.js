@@ -16,7 +16,7 @@ export const PaginateButton = styled.button`
     border-radius: 5px;
     font-size: 15px;
     color: #fff;
-    background-color: orange;
+    background-color: #69a81b;
     cursor: pointer;
     :hover {
         opacity: 0.8;
