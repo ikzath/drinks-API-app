@@ -39,7 +39,7 @@ function Footer() {
                             <FooterLinks>
                                 <FooterLinkTitle>Services</FooterLinkTitle>
                                 <FooterLink to='/about'>How it works</FooterLink>
-                                <FooterLink to='/'>Perfume prep kit</FooterLink>
+                                <FooterLink to='/'>Drinks prep kit</FooterLink>
                             </FooterLinks>
 
                         </FooterLinksWrapper>
